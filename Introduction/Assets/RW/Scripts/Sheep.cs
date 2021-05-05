@@ -29,7 +29,9 @@ public class Sheep : MonoBehaviour
     }
     private void Drop()
     {
+        GameStateManager.Instance.DroppedSheep();
         sheepSpawner.RemoveSheepFromList(gameObject);
+
         myRigidbody.isKinematic = false; // 1
         myCollider.isTrigger = false; // 2
         Destroy(gameObject, dropDestroyDelay); // 3
@@ -47,6 +49,7 @@ public class Sheep : MonoBehaviour
         tweenScale.targetScale = 0; // 2
         tweenScale.timeToReachTarget = gotHayDestroyDelay; // 3
         SoundManager.Instance.PlaySheepHitClip();
+        GameStateManager.Instance.SavedSheep();
 
 
     }
